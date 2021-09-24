@@ -29,6 +29,14 @@
 <body>
 <div class='body'>
     <h1 style="text-align: center">搜索：<?php echo $_GET['name'] ?></h1>
+    <form action='../index.php'>
+        <input type='text' placeholder='搜索分类' name='sort'>
+        <input type='submit' value='提交'>
+    </form>
+    <form action='./search.php'>
+        <input type='text' placeholder='搜索名称' name='name'>
+        <input type='submit' value='提交'>
+    </form>
     <br>
     <?php
         for ($i = 0; $i < count($search); $i++) {

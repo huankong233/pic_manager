@@ -13,9 +13,10 @@
     } else {
         die('漫画储存路径无法访问或不存在！');
     }
-    if (count($list)==2){
+    if (count($list) == 2) {
         die('请在漫画储存文件夹内放入漫画文件夹');
     }
+    @$sort = $_GET['sort'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,65 +29,70 @@
     <link rel="stylesheet" href="./static/css/index.css">
     <link rel="stylesheet" href="./static/css/load.css">
     <style>
-        .load{
+        .load {
             margin: 0 auto;
-            background-color: white;
-            position: absolute;
+            background-color: darkgray;
+            position: fixed;
+            width: 100%;
             top: 40%;
             font-size: 15px;
+            text-align: center;
         }
     </style>
     <script src="https://lib.baomitu.com/jquery/latest/jquery.js"></script>
 </head>
 <body>
 <div class="body">
-        <div class='nav_top'>
-            <ul class='nav'>
-                <li><a href=''>首页</a></li>
-                <li><a href=''>分类</a></li>
-                <li><a href=''>里番</a></li>
-                <li><a href=''>幻空仓库</a></li>
-                <li><a href=''>幻空网盘</a></li>
-            </ul>
-        </div>
-        <div class='nav_bottom_place'>
-            <ul class='nav_bottom'>
-                <li><a href=''>萝莉</a></li>
-                <li><a href=''>巨乳</a></li>
-                <li><a href=''>姐姐系</a></li>
-                <li><a href=''>乱伦</a></li>
-                <li><a href=''>人妻</a></li>
-                <li><a href=''>小孩开大车</a></li>
-                <li><a href=''>cg</a></li>
-                <li><a href=''>查看更多</a></li>
-            </ul>
-        </div>
+    <form action="index.php">
+        <input type='text' placeholder='搜索分类' name="sort">
+        <input type="submit" value="提交">
+    </form>
+    <form action="./func/search.php">
+        <input type='text' placeholder='搜索名称' name="name">
+        <input type="submit" value="提交">
+    </form>
     <?php
         for ($i = 0; $i < count($list); $i++) {
             if ($list[$i] !== "." && $list[$i] !== "..") {
                 $path = $res . '/' . $list[$i];
                 if (is_dir($path)) {
                     $path_info = scandir($path);
-                    for ($j=0;$j<count($path_info);$j++){
-                        if (in_array($path_info[$j],$cover)){
-                            $main_cover = $res."/".$list[$i]."/".$path_info[$j];
-                        }else{
+                    for ($j = 0; $j < count($path_info); $j++) {
+                        if (in_array($path_info[$j], $cover)) {
+                            $main_cover = $res . "/" . $list[$i] . "/" . $path_info[$j];
+                        } else {
                             $main_cover = './static/icon/none.jpg';
                         }
                     }
                     $finfo = finfo_open(FILEINFO_MIME_TYPE);
                     $type = finfo_file($finfo, $main_cover);
                     $info = file_get_contents($main_cover);
-                    $main_cover = "./func/quality.php?q=".$q."&path=".$main_cover;
+                    $main_cover = "./func/quality.php?q=" . $q . "&path=" . $main_cover;
                     $base64String = 'data:' . $type . ';base64,' . chunk_split(base64_encode($info));
-                    print "
+                    $txt = file_get_contents($res . '/' . $list[$i] . '/' . $classify);
+                    if (is_null($sort)) {
+                        print "
                             <div class='pic'>
+                                <p class='classify'>$txt</p>
                                 <a href='./func/detail.php?name=$list[$i]'>
                                     <img src='$base64String' alt='封面'>
                                     <p>$list[$i]</p>
                                 </a>
                             </div>
                     ";
+                    } else {
+                        if (strstr($txt, $sort)) {
+                            print "
+                            <div class='pic'>
+                                <p class='classify'>$txt</p>
+                                <a href='./func/detail.php?name=$list[$i]'>
+                                    <img src='$base64String' alt='封面'>
+                                    <p>$list[$i]</p>
+                                </a>
+                            </div>
+                    ";
+                        }
+                    }
                 }
             }
         }
@@ -94,23 +100,24 @@
 </div>
 </body>
 <script>
-    $(".pic").click(function (){
+    $(".pic").click(function () {
         $("body").append("<div class='load'><div class='loading'></div><h1>如果你看见这个圈，说明你的浏览器正在预加载中,请耐心等待...</h1></div>");
     })
-    window.addEventListener('pageshow',function (){
-        if ($(".load").length===1){
+    window.addEventListener('pageshow', function () {
+        if ($(".load").length === 1) {
             $(".load").remove();
         }
     })
-    $(function() {
+    $(function () {
         initPageHistory();
+
         function initPageHistory() {
             window.addEventListener('pageshow', function (event) {
-                if(event.persisted || window.performance && window.performance.navigation.type == 2){
-                    console.log('window.performance.navigation.type: '+ window.performance.navigation.type);
+                if (event.persisted || window.performance && window.performance.navigation.type == 2) {
+                    console.log('window.performance.navigation.type: ' + window.performance.navigation.type);
                     window.location.reload();
                 }
-            },false);
+            }, false);
         }
 
     })

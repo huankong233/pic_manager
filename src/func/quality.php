@@ -8,6 +8,7 @@
                 die('接口使用错误：路径错误或文件不存在');
             }
         }
+
         $allow_type = ['image/jpeg', 'image/png', 'image/gif'];
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         @$type = finfo_file($finfo, $path);

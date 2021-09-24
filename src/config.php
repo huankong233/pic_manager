@@ -7,3 +7,5 @@
     $cover = ['cover.jpg', 'cover.png', 'cover.jpeg', 'COVER.jpg', 'COVER.png', 'COVER.jpeg', 'COVER.JPG', 'COVER.JPEG', 'COVER.PNG', '1.jpg', '1.png', '1.jpeg', '01.jpg', '01.png', '01.jpeg', '1.JPG', '1.PNG', '1.JPEG','01.JPG', '01.PNG', '01.JPEG'];
     //默认画质比
     $q = 8;
+    //分类文件名称
+    $classify = "classify.txt";
