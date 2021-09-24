@@ -16,5 +16,6 @@
 <p><input type="checkbox" checked="checked" disabled/>11.提供搜索漫画分类功能（可自义定分类文件名称，推荐分类一行一个）</p>
 <p><input type="checkbox" disabled/>12.提供收藏功能，基于session功能</p>
 <p><input type="checkbox" disabled/>13.持续优化体验</p>
-# 没事干做的，星星随意啦~
+
+## 星星数量~
 [![Stargazers over time](https://starchart.cc/huankong233/pic_manager.svg)](https://starchart.cc/huankong233/pic_manager)
