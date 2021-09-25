@@ -15,19 +15,25 @@
 - [ ] 11.优化体验 etc... 
 
 # config.php配置具体教程
-    1.默认漫画储存路径
+1.漫画储存路径：
+<pre>
     $res = "./pic";
-    在当前路径下寻找
-    //缓存目录
+    从config.php所在路径寻找该文件夹
+</pre>
+2.缓存路径：
+<pre>
     $cache = "./cache";
-    //可以作为封面的文件
+    从config.php所在路径寻找该文件夹
+</pre>
+3.可以作为封面的文件
+<pre>
     $cover = ['cover.jpg', 'cover.png', 'cover.jpeg', 'COVER.jpg', 'COVER.png', 'COVER.jpeg', 'COVER.JPG', 'COVER.JPEG', 'COVER.PNG', '1.jpg', '1.png', '1.jpeg', '01.jpg', '01.png', '01.jpeg', '1.JPG', '1.PNG', '1.JPEG','01.JPG', '01.PNG', '01.JPEG','0.jpg','0.jpeg','0.png','0.JPG','0.PNG','0.JPEG'];
-    //若无法获取或者不存在封面，自动使用第一个图片作为封面
+    从$res文件夹下的漫画文件夹下寻找数组内的文件
+</pre>
+4.自动封面
+<pre>
     $auto_cover = true;
-    //默认画质比
-    $q = 8;
-    //分类文件名称
-    $classify = "classify.txt";
-
+    从config.php所在路径寻找该文件夹
+</pre>
 # 星星数量~
 [![Stargazers over time](https://starchart.cc/huankong233/pic_manager.svg)](https://starchart.cc/huankong233/pic_manager)
