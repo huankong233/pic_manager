@@ -91,22 +91,26 @@
                     }
                     if (is_null($sort)) {
                         print "
-                            <div class='pic'>
-                                <p class='classify'>$txt</p>
+                            <div class='container'>
                                 <a href='./func/detail.php?name=$list[$i]'>
-                                    <img src='$base64String' alt='封面'>
-                                    <p>$list[$i]</p>
+                                   <div class='pic'>
+                                    <p class='classify'>$txt</p>
+                                        <img src='$base64String' alt='封面'>
+                                        <p>$list[$i]</p>
+                                    </div>
                                 </a>
                             </div>
                     ";
                     } else {
                         if (strstr($txt, $sort)) {
                             print "
-                            <div class='pic'>
-                                <p class='classify'>$txt</p>
+                            <div class='container'>
                                 <a href='./func/detail.php?name=$list[$i]'>
-                                    <img src='$base64String' alt='封面'>
-                                    <p>$list[$i]</p>
+                                   <div class='pic'>
+                                    <p class='classify'>$txt</p>
+                                        <img src='$base64String' alt='封面'>
+                                        <p>$list[$i]</p>
+                                    </div>
                                 </a>
                             </div>
                     ";
