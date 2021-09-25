@@ -57,11 +57,27 @@
                 $path = $res . '/' . $list[$i];
                 if (is_dir($path)) {
                     $path_info = scandir($path);
+                    $key = 0;
                     for ($j = 0; $j < count($path_info); $j++) {
                         if (in_array($path_info[$j], $cover)) {
                             $main_cover = $res . "/" . $list[$i] . "/" . $path_info[$j];
                         } else {
-                            $main_cover = './static/icon/none.jpg';
+                            if ($auto_cover==true){
+                                if ($path_info[$j]!=='.'&&$path_info[$j]!=='..'){
+                                    if ($key==0){
+                                        $main_cover = $res . '/' . $list[$i] . '/' . $path_info[$j];
+                                        $pic_path = $path . '/' . $path_info[$j];
+                                        $allow_type = ['image/jpeg','image/png','image/gif'];
+                                        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                                        $type = finfo_file($finfo,$pic_path);
+                                        if (in_array($type,$allow_type)) {
+                                            $key++;
+                                        }
+                                    }
+                                }
+                            }else{
+                                $main_cover = './static/icon/none.jpg';
+                            }
                         }
                     }
                     $finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -69,7 +85,10 @@
                     $info = file_get_contents($main_cover);
                     $main_cover = "./func/quality.php?q=" . $q . "&path=" . $main_cover;
                     $base64String = 'data:' . $type . ';base64,' . chunk_split(base64_encode($info));
-                    $txt = file_get_contents($res . '/' . $list[$i] . '/' . $classify);
+                    @$txt = file_get_contents($res . '/' . $list[$i] . '/' . $classify);
+                    if ($txt==false){
+                        $txt = "暂无标签";
+                    }
                     if (is_null($sort)) {
                         print "
                             <div class='pic'>

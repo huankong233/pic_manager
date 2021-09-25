@@ -27,13 +27,22 @@
             $now = 0;
             for ($i = 0; $i < count($pic_name); $i++) {
                 if ($pic_name[$i] !== "." && $pic_name[$i] !== "..") {
-                    $server_host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . str_replace('detail.php','', $_SERVER['PHP_SELF']);
-                    $url = $server_host.'quality.php?q=' . $q . '&path=' . $path ."/". $pic_name[$i];
-                    $link = preg_replace('/ /', '%20', $url);
-                    $info = file_get_contents($link);
-                    $base64String = 'data:image/png;base64,' . chunk_split(base64_encode($info));
-                    echo "<img src='$base64String' alt='这是第{$now}张图'>";
-                    $now++;
+                    $pic_path = $path . '/' . $pic_name[$i];
+                    $allow_type = ['image/jpeg','image/png','image/gif'];
+                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                    $type = finfo_file($finfo,$pic_path);
+                    if (in_array($type,$allow_type)){
+                        $server_host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . str_replace('detail.php', '', $_SERVER['PHP_SELF']);
+                        $url = $server_host . 'quality.php?q=' . $q . '&path=' . $path . '/' . $pic_name[$i];
+                        $link = preg_replace('/ /', '%20', $url);
+                        $info = file_get_contents($link);
+                        $base64String = 'data:image/png;base64,' . chunk_split(base64_encode($info));
+                        echo "<img src='$base64String' alt='这是第{$now}张图'>";
+                        $now++;
+                    }else{
+                        //var_dump($pic_name[$i]);
+                        //防止输出可能存在的除了图片的文件
+                    }
                 }
             }
         } else {

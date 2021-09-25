@@ -43,11 +43,27 @@
             if ($search[$i] !== '.' && $search[$i] !== '..') {
                 $path = $search[$i];
                 $path_info = scandir($path);
+                $key = 0;
                 for ($j = 0; $j < count($path_info); $j++) {
                     if (in_array($path_info[$j], $cover)) {
                         $main_cover = $search[$i] . '/' . $path_info[$j];
                     } else {
-                        $main_cover = '../static/icon/none.jpg';
+                        if ($auto_cover == true) {
+                            if ($path_info[$j] !== '.' && $path_info[$j] !== '..') {
+                                if ($key == 0) {
+                                    $main_cover = $search[$i] . '/' . $path_info[$j];
+                                    $pic_path = $path . '/' . $path_info[$j];
+                                    $allow_type = ['image/jpeg', 'image/png', 'image/gif'];
+                                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                                    $type = finfo_file($finfo, $pic_path);
+                                    if (in_array($type, $allow_type)) {
+                                        $key++;
+                                    }
+                                }
+                            }
+                        } else {
+                            $main_cover = '../static/icon/none.jpg';
+                        }
                     }
                 }
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);

@@ -21,6 +21,7 @@ body .classify{
     top: 0;
     color: blue!important;
     font-size: 20px;
+    background: white;
 }
 
 @media screen and (max-width: 768px){
