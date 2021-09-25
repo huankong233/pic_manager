@@ -6,7 +6,7 @@
     for ($i = 0; $i <= count($list) - 1; $i++) {
         $zip_file = '.' . $cache . '/' . $list[$i];
         if ($list[$i] !== '.' && $list[$i] !== '..') {
-            if (filectime($zip_file) + 60*30 - $time <= 0) {
+            if (filectime($zip_file) + $cached_time - $time <= 0) {
                 var_dump($zip_file);
                 unlink($zip_file);
             }
