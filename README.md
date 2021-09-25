@@ -35,5 +35,15 @@
     $auto_cover = true;
     从config.php所在路径寻找该文件夹
 </pre>
+5.默认画质压缩比
+<pre>
+    $q=8;
+    画质压缩，压缩比例是1-10
+</pre>
+6.读取的分类/标签文件名称
+<pre>
+    $classify = "classify.txt";
+    从$res文件夹下的漫画文件夹下寻找名称为该字符串的文件
+</pre>
 # 星星数量~
 [![Stargazers over time](https://starchart.cc/huankong233/pic_manager.svg)](https://starchart.cc/huankong233/pic_manager)
