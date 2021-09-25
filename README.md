@@ -45,5 +45,11 @@
     $classify = "classify.txt";
     从$res文件夹下的漫画文件夹下寻找名称为该字符串的文件
 </pre>
+7.读取的分类/标签文件名称
+<pre>
+    $cached_time = 30*60;
+    缓存的压缩包多长时间后触发删除*(单位为秒，30分钟即设置值为30*60)
+    *我这里触发删除的意思就是，下载一次会检测一次，没有人下载就一直不会检测~
+</pre>
 # 星星数量~
 [![Stargazers over time](https://starchart.cc/huankong233/pic_manager.svg)](https://starchart.cc/huankong233/pic_manager)
