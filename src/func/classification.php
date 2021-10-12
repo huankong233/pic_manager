@@ -54,18 +54,21 @@
             } else {
                 die('漫画储存路径无法访问或不存在！');
             }
+            $save = [];
             for ($i = 0; $i < count($list); $i++) {
                 if ($list[$i] !== '.' && $list[$i] !== '..') {
                     $path = $res . '/' . $list[$i];
                     if (is_dir($path)) {
                         @$txt = file_get_contents($res . '/' . $list[$i] . '/' . $classify);
-                        if ($txt == false) {
-                            $txt = '暂无标签';
-                        }
-                        $arr = explode("\n",$txt);
-                        for ($k=0;$k<count($arr);$k++){
-                            $link = "../index.php?sort=".$arr[$k];
-                            echo "<li><a href='$link'><p>{$arr[$k]}</p></a></li>";
+                        if ($txt != false) {
+                            $arr = explode("\n", $txt);
+                            for ($k = 0; $k < count($arr); $k++) {
+                                $link = '../index.php?sort=' . $arr[$k];
+                                if (!in_array($arr[$k],$save)){
+                                    $save[]=$arr[$k];
+                                    echo "<li><a href='$link'><p>{$arr[$k]}</p></a></li>";
+                                }
+                            }
                         }
                     }
                 }
