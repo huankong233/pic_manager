@@ -262,10 +262,5 @@
             goto();
         }
     }
-
-    $(function (){
-        // document.write($('.nav_top').css('width'));
-        // document.write(parseFloat(window.innerWidth))
-    })
 </script>
 </html>

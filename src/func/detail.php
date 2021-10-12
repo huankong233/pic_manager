@@ -34,14 +34,17 @@
                     if (in_array($type,$allow_type)){
                         $server_host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . str_replace('detail.php', '', $_SERVER['PHP_SELF']);
                         $url = $server_host . 'quality.php?q=' . $q . '&path=' . $path . '/' . $pic_name[$i];
-                        $link = preg_replace('/ /', '%20', $url);
-                        $info = file_get_contents($link);
-                        $base64String = 'data:image/png;base64,' . chunk_split(base64_encode($info));
-                        echo "<img src='$base64String' alt='这是第{$now}张图'>";
+                        if ($to_base64==true){
+                            $link = preg_replace('/ /', '%20', $url);
+                            $info = file_get_contents($link);
+                            $base64String = 'data:image/png;base64,' . chunk_split(base64_encode($info));
+                        }
+                        if (isset($base64String)){
+                            echo "<img src='$base64String' alt='这是第{$now}张图'>";
+                        }else{
+                            echo "<img src='$url' alt='这是第{$now}张图'>";
+                        }
                         $now++;
-                    }else{
-                        //var_dump($pic_name[$i]);
-                        //防止输出可能存在的除了图片的文件
                     }
                 }
             }

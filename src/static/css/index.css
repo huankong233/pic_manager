@@ -1,9 +1,14 @@
-.body{
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
     width: 100%;
     background: #444444;
 }
 
-.pic{
+.pic {
     display: inline-block;
     border: 2px solid gray;
     padding: 5px;
@@ -11,59 +16,63 @@
     width: 100%;
 }
 
-body .classify{
+body .classify {
     position: absolute;
     top: 0;
-    color: blue!important;
+    color: blue !important;
     font-size: 20px;
     background: white;
     margin: 5px 0 0 5px;
 }
 
-@media screen and (max-width: 768px){
-    .container{
+@media screen and (max-width: 768px) {
+    .container {
         width: 95%;
     }
 }
-@media screen and (min-width: 769px) and (max-width: 992px){
-    .container{
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+    .container {
         width: 47%;
     }
 }
-@media screen and (min-width: 993px) and (max-width: 1200px){
-    .container{
+
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+    .container {
         width: 30%;
     }
 }
-@media screen and (min-width: 1201px){
-    .container{
+
+@media screen and (min-width: 1201px) {
+    .container {
         width: 15%;
     }
 }
-.container{
+
+.container {
     display: inline-flex;
     height: 430px;
     margin-top: 10px;
 }
 
-.container a{
+.container a {
     width: 100%;
 }
 
-.pic img{
+.pic img {
     width: 100%;
     height: 365px;
 }
 
-.pic p{
+.pic p {
     color: white;
     text-align: center;
 }
 
-.nav{
+.nav {
     width: 100%;
 }
 
-a{
+a {
     text-decoration: none;
 }

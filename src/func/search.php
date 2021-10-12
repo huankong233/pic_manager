@@ -24,7 +24,16 @@
           content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
     <title>搜索内容:"<?php echo $_GET['name'] ?>"</title>
+<!--    <link rel='stylesheet' href='../static/css/index.css'>-->
+
     <link rel='stylesheet' href='../static/css/index.css'>
+    <link rel='stylesheet' href='../static/css/load.css'>
+    <link rel='stylesheet' href='../static/css/main.css'>
+    <link rel='stylesheet' href='../static/css/460.css'>
+    <link rel='stylesheet' href='../static/css/650.css'>
+    <link rel='stylesheet' href='../static/css/950.css'>
+    <link rel='stylesheet' href='../static/css/1250.css'>
+    <link rel='stylesheet' href='../static/css/1450.css'>
 </head>
 <body>
 <div class='body'>
@@ -82,10 +91,12 @@
                 }
                 $name = str_replace("../pic/","",$search[$i]);
                 print "
-                            <div class='pic'>
+                            <div class='container'>
                                 <a href='./detail.php?name=$name'>
-                                    <img src='$base64String' alt='封面'>
-                                    <p>$name</p>
+                                   <div class='pic'>
+                                        <img src='$base64String' alt='封面'>
+                                        <p>$name</p>
+                                    </div>
                                 </a>
                             </div>
                     ";
