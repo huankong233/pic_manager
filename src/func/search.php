@@ -66,11 +66,20 @@
                         }
                     }
                 }
-                $finfo = finfo_open(FILEINFO_MIME_TYPE);
-                $type = finfo_file($finfo, $main_cover);
-                $info = file_get_contents($main_cover);
-                $main_cover = './func/quality.php?q=' . $q . '&path=' . $main_cover;
-                $base64String = 'data:' . $type . ';base64,' . chunk_split(base64_encode($info));
+                $server_host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+                if (strstr($server_host, '.php')) {
+                    $server_host = dirname($server_host);
+                }
+                $local_cover = $main_cover;
+                $main_cover = $server_host . '/quality.php?q=' . $q . '&path=' . $main_cover;
+                if ($to_base64 == true) {
+                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                    $type = finfo_file($finfo, $local_cover);
+                    $info = file_get_contents($main_cover);
+                    $base64String = 'data:' . $type . ';base64,' . chunk_split(base64_encode($info));
+                } else {
+                    $base64String = $main_cover;
+                }
                 $name = str_replace("../pic/","",$search[$i]);
                 print "
                             <div class='pic'>

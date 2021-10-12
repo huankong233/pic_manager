@@ -1,0 +1,24 @@
+@media screen and (max-width: 649px) {
+    .nav li {
+        margin-left: 3%;
+    }
+
+    .nav_bottom_place {
+        width: 400px;
+        margin: 0 auto;
+    }
+
+    .nav_bottom {
+        width: 100%;
+        padding-top: 10px;
+    }
+
+    .search {
+        width: 300px;
+        margin-left: 10%;
+    }
+
+    .nav li a{
+        font-size: 20px;
+    }
+}

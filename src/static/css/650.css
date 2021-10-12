@@ -1,0 +1,22 @@
+@media screen and (min-width: 650px) and (max-width: 949px) {
+    .nav li {
+        margin-left: 8%;
+    }
+    .nav_bottom_place{
+        width: 500px;
+        margin: 0 auto;
+    }
+    .nav_bottom {
+        width: 100%;
+        padding-top: 10px;
+    }
+
+    .search {
+        width: 300px;
+        margin-left: 30%;
+    }
+
+    .nav li a{
+        font-size: 20px;
+    }
+}
